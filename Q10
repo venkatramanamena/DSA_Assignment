@@ -1,0 +1,59 @@
+class Stack {
+  constructor() {
+    this.items = [];
+    this.minStack = []; 
+  }
+
+  push(item) {
+    this.items.push(item);
+
+
+    if (this.minStack.length === 0 || item <= this.minStack[this.minStack.length - 1]) {
+      this.minStack.push(item);
+    }
+  }
+
+  pop() {
+    if (!this.isEmpty()) {
+      const poppedItem = this.items.pop();
+
+    
+      if (poppedItem === this.minStack[this.minStack.length - 1]) {
+        this.minStack.pop();
+      }
+
+      return poppedItem;
+    }
+  }
+
+  peek() {
+    if (!this.isEmpty()) {
+      return this.items[this.items.length - 1];
+    }
+  }
+
+  isEmpty() {
+    return this.items.length === 0;
+  }
+
+  size() {
+    return this.items.length;
+  }
+
+  getMin() {
+    
+    if (!this.isEmpty()) {
+      return this.minStack[this.minStack.length - 1];
+    }
+  }
+}
+
+
+const stack = new Stack();
+stack.push(3);
+stack.push(5);
+stack.push(2);
+stack.push(1);
+stack.push(7);
+
+console.log("Smallest number in the stack:", stack.getMin()); // Output: 1

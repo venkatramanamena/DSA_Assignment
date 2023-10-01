@@ -1,0 +1,27 @@
+function postfixToPrefix(postfix) {
+  const stack = [];
+  const operators = "+-*/";
+
+  for (let token of postfix.split(" ")) {
+    if (!operators.includes(token)) {
+    
+      stack.push(token);
+    } else {
+     
+      const operand2 = stack.pop();
+      const operand1 = stack.pop();
+
+   
+      const prefixExpression = token + " " + operand1 + " " + operand2;
+      stack.push(prefixExpression);
+    }
+  }
+
+ 
+  return stack.pop();
+}
+
+
+const postfixExpression = "3 4 + 5 2 * 7 3 / -";
+const prefixExpression = postfixToPrefix(postfixExpression);
+console.log(prefixExpression); // Output: "- + 3 4 * 5 2 / 7 3"

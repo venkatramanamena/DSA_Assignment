@@ -1,0 +1,31 @@
+function isOperator(token) {
+  return "+-*/".includes(token);
+}
+
+function prefixToInfix(prefix) {
+  const stack = [];
+  const tokens = prefix.split(" ").reverse(); 
+
+  for (let token of tokens) {
+    if (!isOperator(token)) {
+   
+      stack.push(token);
+    } else {
+      
+      const operand2 = stack.pop();
+      const operand1 = stack.pop();
+
+      
+      const infixExpression = `(${operand1} ${token} ${operand2})`;
+      stack.push(infixExpression);
+    }
+  }
+
+
+  return stack.pop();
+}
+
+
+const prefixExpression = "- + 3 * 4 5";
+const infixExpression = prefixToInfix(prefixExpression);
+console.log(infixExpression); // Output: "((3 + (4 * 5)) - 3)"

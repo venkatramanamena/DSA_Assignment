@@ -1,0 +1,22 @@
+function areRotations(str1, str2) {
+ 
+  if (str1.length !== str2.length) {
+    return false;
+  }
+
+ 
+  const concatenatedStr = str1 + str1;
+
+
+  if (concatenatedStr.includes(str2)) {
+    return true;
+  }
+
+  return false;
+}
+
+
+const string1 = "waterbottle";
+const string2 = "erbottlewat";
+const result = areRotations(string1, string2);
+console.log(result); // Output: true (string2 is a rotation of string1)
